@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="Assuretout">
+	<jta-data-source>java:/pfa</jta-data-source>
+	<class>persistance.Personne</class>
+          	<properties>
+<property name="hibernate.jdbc.Schema" value="pfa" />
+<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" /> 
+<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/pfa" /> 
+<property name="hibernate.connection.username" value="root" /> 
+<property name="hibernate.connection.password" value="" /> 
+<property name="hibernate.Log" value="none" /> 
+<property name="hibernate.hbm2ddl.auto" value="update"/>
+<!--<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL4Dialect" />-->
+		</properties>	
+	</persistence-unit>
+</persistence>
