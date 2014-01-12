@@ -3,15 +3,16 @@ package persistance;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-@Entity
+@MappedSuperclass
 public class Personne implements Serializable{
-
+	private static final long serialVersionUID = 1L;
 	public Personne() {
 		// TODO Auto-generated constructor stub
 	}

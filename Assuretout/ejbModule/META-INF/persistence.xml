@@ -3,6 +3,11 @@
 	<persistence-unit name="Assuretout">
 	<jta-data-source>java:/pfa</jta-data-source>
 	<class>persistance.Personne</class>
+	<class>persistance.Coutier</class>
+	<class>persistance.Client</class>
+	<class>persistance.Redacteur</class>
+	<class>persistance.Expert</class>
+	<class>persistance.Contrat</class>
           	<properties>
 <property name="hibernate.jdbc.Schema" value="pfa" />
 <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" /> 
