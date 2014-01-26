@@ -19,7 +19,7 @@ public class Client extends Personne implements Serializable{
 	private Coutier courtierclient;
 	
 
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	public Coutier getCourtierclient() {
 		return courtierclient;
 	}

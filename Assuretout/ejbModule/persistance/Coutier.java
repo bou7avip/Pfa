@@ -14,7 +14,7 @@ public class Coutier extends Personne implements Serializable{
 
 	private java.util.Collection<Client> clientcourtier;
 	
-	@OneToMany(mappedBy="courtierclient",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="courtierclient")
 	public java.util.Collection<Client> getClientcourtier() {
 		return clientcourtier;
 	}

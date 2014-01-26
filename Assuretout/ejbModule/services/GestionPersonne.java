@@ -12,6 +12,7 @@ import persistance.Client;
 import persistance.Contrat;
 import persistance.Coutier;
 import persistance.Expert;
+import persistance.Message;
 import persistance.Personne;
 import persistance.Redacteur;
 
@@ -55,7 +56,7 @@ EntityManager em;
 	@Override
 	public void deleteClient(Client p) {
 		// TODO Auto-generated method stub
-		em.remove(p);
+		em.remove(em.contains(p) ? p : em.merge(p));
 	}
 
 	@Override
@@ -73,7 +74,7 @@ EntityManager em;
 	@Override
 	public void deleteRedacteur(Redacteur p) {
 		// TODO Auto-generated method stub
-		em.remove(p);
+		em.remove(em.contains(p) ? p : em.merge(p));
 	}
 
 	@Override
@@ -91,7 +92,7 @@ EntityManager em;
 	@Override
 	public void deleteExpert(Expert p) {
 		// TODO Auto-generated method stub
-		em.remove(p);
+		em.remove(em.contains(p) ? p : em.merge(p));
 	}
 
 	@Override
@@ -109,7 +110,7 @@ EntityManager em;
 	@Override
 	public void deleteCourtier(Coutier p) {
 		// TODO Auto-generated method stub
-		em.remove(p);
+		em.remove(em.contains(p) ? p : em.merge(p));
 	}
 
 
@@ -172,7 +173,7 @@ EntityManager em;
 	@Override
 	public void deleteContrat(Contrat p) {
 		// TODO Auto-generated method stub
-		em.remove(p);
+		em.remove(em.contains(p) ? p : em.merge(p));
 	}
 
 
@@ -181,6 +182,58 @@ EntityManager em;
 	public List<Contrat> getAllContrat() {
 		// TODO Auto-generated method stub
 		Query query=em.createQuery("select e from Contrat e");
+		return query.getResultList();
+	}
+
+
+
+	public Personne getUser(String log, String pwd) {
+		// TODO Auto-generated method stub
+		String queryt="select r from Client r where ((r.mailPersonne= :login) and (r.pwdPersonne= :pwd))";
+		Query query=em.createQuery(queryt).setParameter("login",log);
+		query.setParameter("pwd", pwd);
+	if(query != null)
+	
+			return (Personne) query.getSingleResult();
+	else
+		return null;
+	}
+
+
+
+	@Override
+	public List<Contrat> getContratuser(Client cl) {
+		String queryt="select e from Contrat e where e.cliContrat= :client) ";
+		Query query=em.createQuery(queryt).setParameter("client",cl);
+		
+		return query.getResultList();
+	}
+
+
+
+	@Override
+	public void addcourtierclient(Coutier p, Client cl) {
+		// TODO Auto-generated method stub
+		cl.setCourtierclient(p);
+		em.merge(cl);
+	}
+
+
+
+	@Override
+	public void createMessage(Message p) {
+		// TODO Auto-generated method stub
+		em.persist(p);
+	}
+
+
+
+	@Override
+	public List<Message> getMessage(Personne cl) {
+		// TODO Auto-generated method stub
+		String queryt="select e from Message e where ((e.pera= :client) or (e.perb=:client)) ";
+		Query query=em.createQuery(queryt).setParameter("client",cl);
+		
 		return query.getResultList();
 	}
 
